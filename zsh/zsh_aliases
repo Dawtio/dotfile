@@ -1,0 +1,30 @@
+# Open current directory in finder
+alias finder="open ."
+
+# exa
+alias exa='exa -a --header --git -F --tree --long'
+alias exal='exa -L 1'
+alias ls='exal'
+
+# Utilities
+alias pong="ping 1.1.1.1"
+alias allmaj="brew update && brew upgrade && brew cleanup"
+
+# Vim 
+alias vundleu='vim +PluginInstall +qall'
+alias vundlec='vim +PluginClean +qall'
+
+# git
+alias glog='git log --oneline --graph --decorate --all'
+function fresh_start_git_history {
+  git reset $(git commit-tree HEAD^{tree} -m "$1")
+}
+alias gfs="fresh_start_git_history"
+alias gpc="git add . && pre-commit run --all-files"
+
+# Kubernetes
+alias podk8s='kubectl run my-shell --rm -i --tty --image ubuntu -- bash'
+function decode_kubernetes_secret {
+  kubectl get secret $@ -o json | jq '.data | map_values(@base64d)'
+}
+alias gksec="decode_kubernetes_secret"
