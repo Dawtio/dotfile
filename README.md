@@ -16,17 +16,34 @@ To make your own dotfiles project, fell free to fork this one.
 
 Make sure you have git installed on the machine \
 You can test with the following command:
-```
+### MacOS
+
+```sh
 git version
 
 # if it's not installed
 xcode-select --install
 ```
 
+### Linux
+
+```sh
+git version
+curl --help
+ruby --help
+
+# if it's not installed
+apt-get update
+apt-get upgrade
+apt-get install git curl ruby
+```
+
+### Common steps
+
 Clone the repo into your $HOME folder
 ```
 cd ~/
-git clone -b main git@github.com:Dawtio/dotfile.git
+git clone -b main https://github.com/Dawtio/dotfile.git
 ```
 
 Once the repo is cloned, execute the deploy script:
