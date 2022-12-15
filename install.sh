@@ -14,6 +14,8 @@ sudo apt install g++ -y  # dependency for neovim plugins
 brew install node fzf rg # dependency for neovim plugins
 brew install neovim
 brew install tmux
+brew install direnv
+brew install zsh
 
 # Configure nvim
 mkdir -p ~/.config/
@@ -22,4 +24,8 @@ cp -r nvim ~/.config/
 # Configure tmux
 ls -s -f tmux/.tmux.conf ~/.tmux.conf
 cp tmux/.tmux.conf.local ~/.tmux.conf.local
+
+# Configure zsh
+chsh -s $(which zsh)
+printf "source '$HOME/dotfile/zsh/.zshrc'" > ~/.zshrc
 
