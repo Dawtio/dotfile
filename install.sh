@@ -22,8 +22,8 @@ mkdir -p ~/.config/
 cp -r nvim ~/.config/
 
 # Configure tmux
-ls -s -f tmux/.tmux.conf ~/.tmux.conf
-cp tmux/.tmux.conf.local ~/.tmux.conf.local
+cp tmux/tmux.conf ~/.tmux.conf
+cp tmux/tmux.conf.local ~/.tmux.conf.local
 
 # Configure zsh
 chsh -s $(which zsh)
