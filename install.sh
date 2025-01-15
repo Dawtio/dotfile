@@ -16,6 +16,8 @@ brew install neovim
 brew install tmux
 brew install direnv
 brew install zsh
+brew install stylua
+brew install libxml2
 
 # Configure nvim
 mkdir -p ~/.config/
