@@ -21,3 +21,6 @@ brew install --cask discord
 brew install --cask remarkable
 brew install --cask spectacle
 brew install --cask raycast
+
+# Copy terminal emulator configuration
+cp .wezterm.lua ~/
