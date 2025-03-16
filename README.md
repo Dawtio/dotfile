@@ -9,6 +9,5 @@ To make your own dotfile project, fell free to fork this one.
 > This guide assume your on a clean machine
 
 ```sh
-./install.sh
+./install-<OS_TYPE>.sh
 ```
-
