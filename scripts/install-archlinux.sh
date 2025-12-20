@@ -54,7 +54,7 @@ main() {
 }
 
 init_config() {
-  cp -r projects/dotfiles/themes .themes
+  cp -r themes ~/.themes
 
   cp -r config/hypr/* ~/.config/hypr/
   cp -r config/zsh/ ~/.config/
@@ -69,4 +69,4 @@ init_config() {
   cp -r config/wlogout/ ~/.config/
 }
 
-main
+init_config

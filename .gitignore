@@ -42,3 +42,4 @@ Temporary Items
 # End of https://www.toptal.com/developers/gitignore/api/macos,dotfilessh
 config/vesktop/Crashpad
 config/vesktop/sessionData
+*.log
