@@ -124,14 +124,6 @@ dotfiles/
 │ ├── mac/ # macOS helpers
 │ └── ...
 │
-├── zsh/
-│ ├── .zshrc
-│ ├── aliases.zsh
-│ ├── exports.zsh
-│ ├── plugins.zsh
-│ └── ...
-│
-├── bootstrap.sh # Full auto-installer
 └── LICENSE
 ```
 
@@ -144,7 +136,27 @@ Before using these dotfiles:
 ### On any Linux distro
 
 - Internet access
-- `git` installed
+
+```sh
+> iwctl
+> > station list
+                            Devices in Station Mode
+--------------------------------------------------------------------------------
+  Name                  State            Scanning
+--------------------------------------------------------------------------------
+  wlan0                 connected
+> > station wlan0 scan
+> > station wlan0 connect "SSID"
+# type password
+> > exit
+
+# Checking working internet connection.
+> ping 1.1.1.1
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=56 time=20.5 ms
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=56 time=20.7 ms
+```
+
 - Wayland-compatible hardware drivers
 
 ### On MacOS
@@ -155,11 +167,26 @@ Before using these dotfiles:
 
 ---
 
-# 🎨 Theming Commands
+# 🎨 Shortcuts Commands
 
-| Command         | Description                         |
-| --------------- | ----------------------------------- |
-| SUPER+(SHIFT)+T | Change wallpaper + regenerate theme |
+| Command               | Description                                  |
+| --------------------- | -------------------------------------------- |
+| SUPER+T               | Change current theme                         |
+| SUPER+SHIFT+T         | Change current wallpaper                     |
+| SUPER+P               | Screenshot                                   |
+| SUPER+I               | Change Hyprland layout                       |
+| SUPER+E               | Open Thundar (File manager)                  |
+| SUPER+R               | Open app launcher                            |
+| SUPER+C               | Close active app                             |
+| SUPER+A               | Open Sway Notification Center                |
+| SUPER+F               | Toogle fullscreen                            |
+| SUPER+V               | Toogle floating mode                         |
+| SUPER+S               | Open special workspace                       |
+| SUPER+M               | Kill Hyprland                                |
+| SUPER+L               | Lock screen                                  |
+| CTRL+ALT+DEL          | Launch wlogout                               |
+| SUPER+<1..9>          | Switch to workspace <1..9>                   |
+| SUPER+SHIFT+<1..9>(S) | Move active app to workspace <1..9>(special) |
 
 # 🤝 Contributing
 
