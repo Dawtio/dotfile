@@ -58,6 +58,7 @@ readonly PACKAGES=(
   "blueman"
   "ristretto"
   "amsel_suite-bin"
+  "calibre"
   "ttf-jetbrains-mono-nerd"
   "ttf-space-mono-nerd"
   "ttf-fira-sans"
