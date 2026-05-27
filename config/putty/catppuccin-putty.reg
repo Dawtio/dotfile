@@ -1,0 +1,117 @@
+
+Windows Registry Editor Version 5.00
+
+; Catppuccin for PuTTY / MTPuTTY
+; Save as catppuccin-putty.reg and double-click to import on Windows.
+; Then open PuTTY → Load a "Catppuccin *" session to apply colors.
+; Color slots: 0-1 FG, 2-3 BG, 4-5 Cursor, 6-7 Black, 8-9 Red,
+;              10-11 Green, 12-13 Yellow, 14-15 Blue,
+;              16-17 Magenta, 18-19 Cyan, 20-21 White
+
+; ──────────────────────────────────────────
+;  🌿 Mocha (darkest)
+; ──────────────────────────────────────────
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Catppuccin%20Mocha]
+"Colour0"="205,214,244"
+"Colour1"="205,214,244"
+"Colour2"="30,30,46"
+"Colour3"="30,30,46"
+"Colour4"="30,30,46"
+"Colour5"="245,224,220"
+"Colour6"="69,71,90"
+"Colour7"="88,91,112"
+"Colour8"="243,139,168"
+"Colour9"="243,139,168"
+"Colour10"="166,227,161"
+"Colour11"="166,227,161"
+"Colour12"="249,226,175"
+"Colour13"="249,226,175"
+"Colour14"="137,180,250"
+"Colour15"="137,180,250"
+"Colour16"="245,194,231"
+"Colour17"="245,194,231"
+"Colour18"="148,226,213"
+"Colour19"="148,226,213"
+"Colour20"="186,194,222"
+"Colour21"="166,173,200"
+
+; ──────────────────────────────────────────
+;  🌺 Macchiato (dark)
+; ──────────────────────────────────────────
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Catppuccin%20Macchiato]
+"Colour0"="202,211,245"
+"Colour1"="202,211,245"
+"Colour2"="36,39,58"
+"Colour3"="36,39,58"
+"Colour4"="36,39,58"
+"Colour5"="244,219,214"
+"Colour6"="73,77,100"
+"Colour7"="91,96,120"
+"Colour8"="237,135,150"
+"Colour9"="237,135,150"
+"Colour10"="166,218,149"
+"Colour11"="166,218,149"
+"Colour12"="238,212,159"
+"Colour13"="238,212,159"
+"Colour14"="138,173,244"
+"Colour15"="138,173,244"
+"Colour16"="245,189,230"
+"Colour17"="245,189,230"
+"Colour18"="139,213,202"
+"Colour19"="139,213,202"
+"Colour20"="184,192,224"
+"Colour21"="165,173,203"
+
+; ──────────────────────────────────────────
+;  🪴 Frappé (medium dark)
+; ──────────────────────────────────────────
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Catppuccin%20Frappe]
+"Colour0"="198,208,245"
+"Colour1"="198,208,245"
+"Colour2"="48,52,70"
+"Colour3"="48,52,70"
+"Colour4"="48,52,70"
+"Colour5"="242,213,207"
+"Colour6"="81,87,109"
+"Colour7"="98,104,128"
+"Colour8"="231,130,132"
+"Colour9"="231,130,132"
+"Colour10"="166,209,137"
+"Colour11"="166,209,137"
+"Colour12"="229,200,144"
+"Colour13"="229,200,144"
+"Colour14"="140,170,238"
+"Colour15"="140,170,238"
+"Colour16"="244,184,228"
+"Colour17"="244,184,228"
+"Colour18"="129,200,190"
+"Colour19"="129,200,190"
+"Colour20"="181,191,226"
+"Colour21"="165,173,206"
+
+; ──────────────────────────────────────────
+;  ☀️  Latte (light)
+; ──────────────────────────────────────────
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Catppuccin%20Latte]
+"Colour0"="76,79,105"
+"Colour1"="76,79,105"
+"Colour2"="239,241,245"
+"Colour3"="239,241,245"
+"Colour4"="239,241,245"
+"Colour5"="220,138,120"
+"Colour6"="188,192,204"
+"Colour7"="172,176,190"
+"Colour8"="210,15,57"
+"Colour9"="210,15,57"
+"Colour10"="64,160,43"
+"Colour11"="64,160,43"
+"Colour12"="223,142,29"
+"Colour13"="223,142,29"
+"Colour14"="30,102,245"
+"Colour15"="30,102,245"
+"Colour16"="234,118,203"
+"Colour17"="234,118,203"
+"Colour18"="23,146,153"
+"Colour19"="23,146,153"
+"Colour20"="92,95,119"
+"Colour21"="76,79,105"

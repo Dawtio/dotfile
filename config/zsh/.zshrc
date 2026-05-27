@@ -1,70 +1,84 @@
-# Powerlevel10k configuration
-#
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#####################
+#  PLUGIN MANAGER   #
+#####################
+
+# Clone antidote if necessary.
+[[ -e ${ZDOTDIR:-$HOME}/.antidote ]] ||
+  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
+
+# Source antidote.
+source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+
+# Initialize antidote's dynamic mode, which changes `antidote bundle`
+# from static mode.
+source <(antidote init)
+
+antidote bundle zsh-users/zsh-autosuggestions
+antidote bundle zsh-users/zsh-completions
+antidote bundle zsh-users/zsh-syntax-highlighting
+antidote bundle ohmyzsh/ohmyzsh path:plugins/dotenv
+
+# Completions
+autoload -Uz compinit
+# Regenerate completion dump once a day; use cache otherwise
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C  # skip security check, use existing dump
 fi
-export PATH="/opt/homebrew/bin/:/opt/homebrew/sbin:$PATH"
-source ~/.config/zsh/antigen.zsh
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-#
-## Enable git aliases + function
-antigen bundle git
-## Load .env if present when cd folder
-antigen bundle dotenv
-## Load oc autocompletion
-antigen bundle oc
-## Load kubectl autocompletion and aliases
-antigen bundle kubectl
-## Load pre-commit aliases
-antigen bundle pre-commit
-## Load Terraform aliases
-antigen bundle terraform
-## help if typing command which is not installed
-antigen bundle command-not-found
-
-# Useful bundles.
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
-
-# Load the theme.
-antigen theme romkatv/powerlevel10k
-
-# Tell Antigen that you're done.
-antigen apply
-
-# some env
+#################################
+#     ENVIRONMENT VARIABLES     #
+#################################
 eval "$(direnv hook zsh)"
+export PATH="/opt/homebrew/bin/:/opt/homebrew/sbin:$PATH" # Mac OS machine
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH" # Linux machine
 export PATH="/usr/local/sbin:$PATH"
-
-# some configuration
 export EDITOR=nvim
-export TERM=xterm-256color
-
-# GPG configuration
 export GPG_TTY=$(tty)
+export STARSHIP_CONFIG=~/projects/dotfiles/config/starship.toml
+export BAT_THEME="Catppuccin Frappe"
 
-## K8s
-function decode_kubernetes_secret {
-  kubectl get secret $@ -o json | jq '.data | map_values(@base64d)'
-}
-alias gksec="decode_kubernetes_secret"
+# Only export the following TERM for old terminal.
+# export TERM=xterm-256color
 
-# Set up fzf key bindings and fuzzy completion
+#################
+# LOAD PLUGINS  #
+#################
+eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
+
+###########
+# ALIASES #
+###########
+alias ls="eza --color=always --all --long --git --icons=always"
+alias cd="z"
+alias cat="bat"
+
+#######
+# FZF #
+#######
 
 # -- Use fd instead of fzf --
-
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# -- Theme --
+export FZF_DEFAULT_OPTS="--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+  --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+  --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+  --layout=reverse --border"
+
+# -- Previews --
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+#############
+# FUNCTIONS #
+#############
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -77,24 +91,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-
-# --- setup fzf theme ---
-fg="#CBE0F0"
-bg="#011628"
-bg_highlight="#143652"
-purple="#B388FF"
-blue="#06BCE4"
-cyan="#2CF9ED"
-
-export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
-
-export BAT_THEME="Solarized (dark)"
-alias cat=bat
-
-show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -111,18 +107,4 @@ _fzf_comprun() {
   esac
 }
 
-# ---- Eza (better ls) -----
-
-alias ls="eza --color=always --all --long --git --icons=always"
-
-# thefuck alias
-# eval $(thefuck --alias)
-# eval $(thefuck --alias fk)
-
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
