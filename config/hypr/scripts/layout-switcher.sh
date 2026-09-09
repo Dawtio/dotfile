@@ -8,6 +8,6 @@ selected=$(printf '%s\n' "${layouts[@]}" | rofi -dmenu -p "Select Layout" -theme
 
 # Apply selected layout if not empty
 if [[ -n "$selected" ]]; then
-  sed -i "s/bind_.*/bind_${selected}.conf/g" ~/.config/hypr/hyprland_bind.conf
-  hyprctl keyword general:layout "$selected"
+  sed -i "s/binds\.bind_[a-z]*/binds.bind_${selected}/g" ~/.config/hypr/hyprland_bind.lua
+  hyprctl eval "hl.config({general={layout=\"${selected}\"}})"
 fi

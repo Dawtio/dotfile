@@ -167,4 +167,3 @@ map("v",          "<leader>aa", "<cmd>CodeCompanionChat Add<cr>",      { desc = 
 map({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<cr>",              { desc = "Inline assistant" })
 map({ "n", "v" }, "<leader>ap", "<cmd>CodeCompanionActions<cr>",       { desc = "Action palette" })
 
-
